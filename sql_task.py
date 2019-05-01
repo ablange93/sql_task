@@ -16,12 +16,12 @@ def create_connection(db_file):
 
 def query_one(conn):
     cur = conn.cursor()
-    cur.execute("select * from people;")
+    # cur.execute("SELECT personId, COUNT(DISTINCT siteId) as qtyOfSitesVisited FROM visits GROUP BY personId ORDER BY qtyOfSitesVisited DESC LIMIT 10")
+    cur.execute("SELECT personId FROM visits LIMIT 10")
+    # rows = cur.fetchall()
 
-    rows = cur.fetchall()
-
-    for row in rows:
-        print(row)
+    #for row in rows:
+    #    print(row)
 
 def query_one(conn):
     cur = conn.cursor()
@@ -57,8 +57,12 @@ elif len(sys.argv) == 2:
     with conn:
         for param in sys.argv:
             if param == "--task-one":
-                print("processing --task-one ")
-                query_one(conn)
+                # print("processing --task-one ")
+                c = conn.cursor()
+                print("personId | qtyOfSitesVisited")
+                for row in c.execute("SELECT personId, COUNT(DISTINCT siteId) as qtyOfSitesVisited FROM visits GROUP BY personId ORDER BY qtyOfSitesVisited DESC LIMIT 10;"):
+                    print(row)
+
             elif param == "--task-two":
                 print("processing  --task-two")
                 query_two(conn)
