@@ -63,7 +63,7 @@ if len(sys.argv) == 1:
         # don't print if you're running unit tests
         pass
     else:
-        # no command line arguments returns help section
+        # no command line args returns on-board documentation
         print("""
 This is a Python module called "sql_task" used query a SQLiteDB database.
 
