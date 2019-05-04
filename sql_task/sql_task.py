@@ -65,25 +65,30 @@ if len(sys.argv) == 1:
     else:
         # no command line arguments returns help section
         print("""
-        This is a Python module called "sql_task" used query a SQLiteDB database.
+This is a Python module called "sql_task" used query a SQLiteDB database.
+
+Usage:
+  $ python -m sql_task [options]
     
-        Usage:
-          $ python -m sql_task [options]
-            
-            Example(s):
-              $ python -m sql_task --task-one
+    Example(s):
+      $ python -m sql_task --task-one
+        
+      $ python -m sql_task --task-two 
+
+Options:
+    --task-one
+        Returns results of a query of the then people
+        who have visited3 the most sites.
+
+    --task-two
+        Inserts the values returned from the above query
+        into the 'frequent_users' table. Once all values
+        are inserted, the table is displayed.
+        
+Unit Testing:
+    To run unit tests enter the following in the command line:
+        $ python -m unittest test_sql_task.TestDbComponents
                 
-              $ python -m sql_task --task-two 
-    
-        Options:
-            --task-one
-                Returns results of a query of the then people
-                who have visited3 the most sites.
-    
-            --task-two
-                Inserts the values returned from the above query
-                into the 'frequent_users' table. Once all values
-                are inserted, the table is displayed.
                 
     """)
 elif len(sys.argv) == 2:
