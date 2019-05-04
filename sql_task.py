@@ -23,7 +23,7 @@ def generate_list(conn):
                 ORDER BY qtyOfSitesVisited DESC LIMIT 10;"""
     cur.execute(query_string)
     rows = cur.fetchall()
-    freq_users_list = [row for row in rows]
+    freq_users = [row for row in rows]
     return freq_users
 
 
@@ -64,7 +64,12 @@ if len(sys.argv) == 1:
     This is a Python module called "sql_task" used query a SQLiteDB database.
 
     Usage:
-        python -m sql_task [options]
+      $ python -m sql_task [options]
+        
+        Example(s):
+          $ python -m sql_task --task-one
+            
+          $ python -m sql_task --task-two 
 
     Options:
         --task-one
@@ -94,7 +99,7 @@ elif len(sys.argv) == 2:
                         print(str(user[0]) + "            " + str(user[1]))
                     else:
                         print(str(user[0]) + "           " + str(user[1]))
-                print("Run '--task-two' to insert the above values into the frequent_users table")
+                print("\nRun '--task-two' to insert the above values into the frequent_users table")
 
             elif param == "--task-two":
                 # TASK 2 | Inserts values from TASK ONE into 'frequent_browsers' table & displays table
