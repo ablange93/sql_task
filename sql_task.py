@@ -59,28 +59,32 @@ def list_table(conn):
 
 
 if len(sys.argv) == 1:
-    # no command line arguments returns help section
-    print("""
-    This is a Python module called "sql_task" used query a SQLiteDB database.
-
-    Usage:
-      $ python -m sql_task [options]
-        
-        Example(s):
-          $ python -m sql_task --task-one
+    if sys.argv[0] == "test_sql_task.py":
+        # don't print if you're running unit tests
+        pass
+    else:
+        # no command line arguments returns help section
+        print("""
+        This is a Python module called "sql_task" used query a SQLiteDB database.
+    
+        Usage:
+          $ python -m sql_task [options]
             
-          $ python -m sql_task --task-two 
-
-    Options:
-        --task-one
-            Returns results of a query of the then people
-            who have visited3 the most sites.
-
-        --task-two
-            Inserts the values returned from the above query
-            into the 'frequent_users' table. Once all values
-            are inserted, the table is displayed.
-            
+            Example(s):
+              $ python -m sql_task --task-one
+                
+              $ python -m sql_task --task-two 
+    
+        Options:
+            --task-one
+                Returns results of a query of the then people
+                who have visited3 the most sites.
+    
+            --task-two
+                Inserts the values returned from the above query
+                into the 'frequent_users' table. Once all values
+                are inserted, the table is displayed.
+                
     """)
 elif len(sys.argv) == 2:
     # one command line argument entered
@@ -111,6 +115,8 @@ elif len(sys.argv) == 2:
                 print("Displaying values from newly created frequent_users table...\n")
                 list_table(conn)
             elif "sql_task" in param:
+                pass
+            elif "-m unittest" in param:
                 pass
             else:
                 print("Parameter " + str(param) + " not recognized. " \
