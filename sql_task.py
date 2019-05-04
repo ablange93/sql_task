@@ -59,9 +59,14 @@ elif len(sys.argv) == 2:
             if param == "--task-one":
                 # print("processing --task-one ")
                 c = conn.cursor()
-                print("personId | qtyOfSitesVisited")
-                for row in c.execute("SELECT personId, COUNT(DISTINCT siteId) as qtyOfSitesVisited FROM visits GROUP BY personId ORDER BY qtyOfSitesVisited DESC LIMIT 10;"):
-                    print(row)
+                print("personId | qtyOfSitesVisited\n----------------------------")
+                query_string = "SELECT personId, COUNT(DISTINCT siteId) as qtyOfSitesVisited FROM visits" \
+                               + " GROUP BY personId ORDER BY qtyOfSitesVisited DESC LIMIT 10;"
+                for row in c.execute(query_string):
+                    if row[0] < 10:
+                        print(str(row[0]) + "          " + str(row[1]))
+                    else:
+                        print(str(row[0]) + "         " + str(row[1]))
 
             elif param == "--task-two":
                 print("processing  --task-two")
